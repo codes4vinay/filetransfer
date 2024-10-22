@@ -1,0 +1,73 @@
+/* Navbar general styles */
+.navbar {
+    background-color: wheat;
+    /* Matching background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.navbar-logo a {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    /* Darker color for contrast */
+    text-decoration: none;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    /* Space between links */
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #535bf2;
+    /* Hover color to match link hover style */
+}
+
+.navbar-btn {
+    background-color: #646cff;
+    /* Button background to match the rest of the theme */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+    background-color: #535bf2;
+    /* Darker hover state */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        /* Hide links on smaller screens */
+    }
+
+    .navbar-btn {
+        font-size: 0.9rem;
+        /* Slightly smaller button */
+    }
+}
