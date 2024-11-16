@@ -61,7 +61,7 @@ h2 {
 /* Form Styles */
 form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 div {

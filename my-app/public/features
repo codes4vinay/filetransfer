@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Filespire</title>
+    <link rel="stylesheet" href="features.css">
+</head>
+
+<body>
+    <header class="features-header">
+        <h1>Why Choose Filespire?</h1>
+        <p>Secure, reliable, and easy-to-use file-sharing platform.</p>
+    </header>
+
+    <section class="features-grid">
+        <div class="feature-item">
+            <div class="icon">🔒</div>
+            <h2>Secure File Sharing</h2>
+            <p>Ensure privacy.</p>
+        </div>
+        <div class="feature-item">
+            <div class="icon">🔗</div>
+            <h2>Instant Link Generation</h2>
+            <p>Get a sharable link as soon as you upload a file.</p>
+        </div>
+        <div class="feature-item">
+            <div class="icon">📧</div>
+            <h2>Email Notifications</h2>
+            <p> Send file links directly to your email.</p>
+        </div>
+        <div class="feature-item">
+            <div class="icon">🛡️</div>
+            <h2>User Authentication</h2>
+            <p>Securely log in and manage your files with Firebase.</p>
+        </div>
+        <div class="feature-item">
+            <div class="icon">📂</div>
+            <h2>File Dashboard</h2>
+            <p>Manage and track all your uploaded files in one place.</p>
+        </div>
+        <!-- <div class="feature-item">
+            <div class="icon">📱</div>
+            <h2>Mobile Friendly</h2>
+            <p>Access and share files seamlessly on any device.</p>
+        </div> -->
+    </section>
+
+    <footer class="features-footer">
+        <button onclick="exploreFeatures()">Explore Filespire</button>
+    </footer>
+
+    <script>
+        function exploreFeatures() {
+            window.location.href = "/";
+        }
+
+    </script>
+</body>
+
+</html>

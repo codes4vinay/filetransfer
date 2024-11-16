@@ -3,6 +3,7 @@ import './App.css';
 import { uploadFile } from './services/api.js';
 import Navbar from './Navbar';
 import Footer from './Footer.jsx';
+import AuthComponent from './AuthComponent.jsx';
 
 function App() {
   const [file, setFile] = useState("");
@@ -44,6 +45,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <AuthComponent />
       <div className='container'>
         <img src={logo} alt='banner'></img>
         <div className='wrapper'>
@@ -51,6 +53,7 @@ function App() {
           <p>Upload and share the download link</p>
           <br></br>
           <button onClick={onUploadClick}>Upload</button>
+
           <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])}></input>
           <br></br>
 
@@ -58,8 +61,13 @@ function App() {
             <>
               <a href={result} target="_blank" rel="noopener noreferrer">{result}</a>
               <button onClick={copyToClipboard}>Copy Link</button>
+
             </>
+
+
           )}
+          <br></br>
+          <button><a href='http://localhost:5000'>Send File via Email</a></button>
         </div>
       </div>
       <Footer />

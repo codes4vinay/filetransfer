@@ -26,10 +26,18 @@ const Footer = () => {
                 <div className="footer-section social">
                     <h3>Follow Us</h3>
                     <div className="social-links">
-                        <a href="#"><i className="fab fa-facebook"></i></a>
-                        <a href="#"><i className="fab fa-twitter"></i></a>
-                        <a href="#"><i className="fab fa-instagram"></i></a>
-                        <a href="#"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/vinay.kumar.ig" target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-linkedin"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -42,3 +50,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
