@@ -27,13 +27,9 @@ setInterval(reloadWebsite, interval);
 
 app.use('/', router);
 app.use(cors({
-  origin: 'https://filetranfer.tech', // Replace with your frontend domain
+  origin: 'https://go.filetranfer.tech', // Replace with your frontend domain
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
-}));
-
-app.use(cors({
-  origin: '*', // Allows requests from any origin
 }));
 
 
