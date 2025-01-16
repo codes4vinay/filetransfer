@@ -6,9 +6,9 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-section about">
-                    <h3>filetranfer</h3>
+                    <h3>Filespire</h3>
                     <p>
-                        filetranfer is a secure and fast platform for sharing files effortlessly.
+                        Filespire is a secure and fast platform for sharing files effortlessly.
                         Our mission is to make file sharing simple and accessible for everyone.
                     </p>
                 </div>
@@ -43,7 +43,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} filetranfer. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Filespire. All rights reserved.</p>
                 <p>Made by Vinay Kumar</p>
             </div>
         </footer>

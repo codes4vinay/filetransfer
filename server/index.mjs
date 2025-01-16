@@ -3,24 +3,51 @@ import router from './routes/routes.js';
 import cors from 'cors';
 import DBconnection from './database/db.js';
 import nodemailer from 'nodemailer';
+const axios = require("axios")
 
 
 const app = express();
+const url = `https://go.filetranfer.tech/`;
+const interval = 800000;
 
-app.use(cors());
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
+
+
 app.use('/', router);
+app.use(cors({
+  origin: 'https://filetranfer.tech', // Replace with your frontend domain
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+}));
+
+app.use(cors({
+  origin: '*', // Allows requests from any origin
+}));
+
+
 
 const sendEmail = async (userEmail, fileLink) => {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "filetranfer@gmail.com",
+            user: "filespire@gmail.com",
             pass: "qjzr moma kzxt iohy",
         },
     });
 
     const mailOptions = {
-        from: "filetranfer <filetranfer@gmail.com>",
+        from: "filespire <filespire@gmail.com>",
         to: user.email,
         subject: "Your File Upload Link",
         text: `Your file has been uploaded successfully. Access it here: ${result}`,

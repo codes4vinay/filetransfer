@@ -64,7 +64,7 @@ function App() {
       {/* Notification Banner */}
 {showNotification && (
   <div className="notification">
-    <p>New feature: Now users can send multiple files at a time!</p>
+    <p>Welcome to Filespire!</p>
     <button className="close-btn" onClick={closeNotification}>✖</button>
   </div>
 )}
@@ -73,7 +73,7 @@ function App() {
       <div className='container'>
         <img src={logo} alt="Logo" />
         <div className='wrapper'>
-          <h1 className="mail-btn">filetranfer</h1>
+          <h1 className="mail-btn">Filespire</h1>
           <h3 className="mail-btn">Upload and share the download link</h3>
           <br />
           <button onClick={onUploadClick}>Upload</button>
@@ -104,7 +104,7 @@ function App() {
       </div >
       <div className='xyz'>
         <header className="features-header">
-          <h1>Why Choose filetranfer?</h1>
+          <h1>Why Choose Filespire?</h1>
           <p>Secure, reliable, and easy-to-use file-sharing platform.</p>
         </header>
 

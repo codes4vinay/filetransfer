@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URI = 'https://app.filetranfer.tech';
+const API_URI = 'https://go.filetranfer.tech';
 
 export const uploadFile = async (data) => {
     try {
