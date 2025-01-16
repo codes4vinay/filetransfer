@@ -27,7 +27,7 @@ setInterval(reloadWebsite, interval);
 
 app.use('/', router);
 app.use(cors({
-  origin: 'https://go.filetranfer.tech'
+  origin: 'https://filetranfer.tech'
 }));
 
 
