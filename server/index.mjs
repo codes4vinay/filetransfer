@@ -30,6 +30,15 @@ app.use(cors({
   origin: 'https://filetranfer.tech'
 }));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://filetranfer.tech'); // Allow specific origin
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // If cookies or credentials are involved
+    next();
+});
+
+
 
 
 const sendEmail = async (userEmail, fileLink) => {
