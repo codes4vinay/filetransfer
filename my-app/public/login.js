@@ -1,4 +1,4 @@
-// public/login.js
+
 document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
     const email = document.getElementById('email').value;
@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         return;
     }
 
-    // Handle login (e.g., validate or send to backend)
+
     console.log('Login:', { email, password });
     alert('Login successful!');
 });

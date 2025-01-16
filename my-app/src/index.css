@@ -15,8 +15,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: yellow;
   text-decoration: inherit;
+}
+
+.mail-btn {
+  color: black;
 }
 
 a:hover {
@@ -72,30 +76,22 @@ button:focus-visible {
   }
 }
 
-/* Prevent horizontal scrolling */
 body {
   overflow-x: hidden;
-  /* Hides horizontal scrollbar */
 }
 
-/* Allow vertical scrolling */
 .scrollable {
   overflow-y: auto;
-  /* Enables vertical scrolling */
   height: 100vh;
-  /* Set the height to full viewport height */
 }
 
-/* For Webkit browsers (Chrome, Safari) */
 .scrollable::-webkit-scrollbar {
   width: 0;
-  /* Hides the scrollbar */
   background: transparent;
-  /* Makes the scrollbar transparent */
 }
 
-/* For Firefox */
+
 .scrollable {
   scrollbar-width: thin;
-  /* Makes the scrollbar thin (invisible if set to 0) */
 }
+

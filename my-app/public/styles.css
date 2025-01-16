@@ -1,15 +1,13 @@
-/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e9ecef;
-    /* Light gray background */
+    background-color: #f4f7fa;
+
     margin: 0;
 }
 
-/* Navbar Styles */
+
 .navbar {
-    background-color: #555;
-    /* Blue background for the navbar */
+    background-color: #333;
     color: white;
     padding: 15px;
     display: flex;
@@ -18,191 +16,118 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Ensure the nav-links are displayed horizontally */
+.nav-links {
+    display: flex;
+    /* Added to make links align horizontally */
+    gap: 20px;
+    /* Add space between links */
+}
+
 .nav-links a {
     color: white;
-    margin-left: 20px;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #0056b3;
-    /* Darker blue on hover */
+    color: #ff4500;
 }
 
-.background {
-    width: 100%;
-    max-width: 600px;
-    /* Max width for the background container */
-    margin: 50px auto;
-    /* Center the container */
-    background: linear-gradient(135deg, #007bff, #00c6ff);
-    /* Gradient background */
-    border-radius: 10px;
-    padding: 30px;
-    /* Padding around the container */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+#auth_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7fa;
 }
 
-.container {
+
+.login-container {
     background-color: #fff;
-    /* White background for the form */
-    border-radius: 8px;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
 }
 
-h2 {
+h3 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Form Styles */
-form {
-    display: flex;
-    flex-direction: row;
-}
 
-div {
+.form-group {
     margin-bottom: 20px;
-    /* Space between form elements */
 }
 
-/* Label Styling */
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-/* Input Styles */
 input {
+    width: 100%;
     padding: 12px;
-    /* Padding for input fields */
     border: 2px solid #007bff;
-    /* Border color */
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 14px;
     transition: border-color 0.3s, box-shadow 0.3s;
-    /* Added transition for focus effect */
-    box-sizing: border-box;
-    /* Ensures padding is included in the total width */
     height: 45px;
-    /* Fixed height for alignment */
+    margin-top: 5px;
 }
 
-/* Focus Effect */
 input:focus {
     border-color: #28a745;
-    /* Green border on focus */
-    outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-    /* Glow effect on focus */
 }
 
-/* Button Styles */
 button {
-    padding: 12px;
+    width: 100%;
+    padding: 20px;
     background-color: #007bff;
-    /* Blue background */
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    /* Added transition for hover effects */
     height: 45px;
-    /* Same height for button */
 }
 
 button:hover {
     background-color: #0056b3;
-    /* Darker blue on hover */
     transform: translateY(-2px);
-    /* Slight lift effect */
 }
 
 button:active {
     transform: translateY(1px);
-    /* Pressed effect */
 }
 
-/* Link Styles */
-p {
-    text-align: center;
-    margin-top: 10px;
-    /* Added margin for spacing */
-}
 
 a {
     color: #007bff;
-    /* Blue color for links */
     text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
     transition: color 0.3s;
-    /* Smooth color transition */
 }
 
 a:hover {
     color: #0056b3;
-    /* Darker blue on hover */
     text-decoration: underline;
 }
 
-/* Error and Success Messages */
-.error {
-    color: red;
-    font-size: 0.9em;
-    text-align: center;
-    margin: 10px 0;
-    /* Added margin for spacing */
-}
 
-.success {
-    color: green;
-    font-size: 0.9em;
-    text-align: center;
-    margin: 10px 0;
-    /* Added margin for spacing */
-}
-
-
-/* Loading Styles */
-.loading {
-    display: none;
-    text-align: center;
-    font-size: 18px;
-    color: #007bff;
-    /* Blue color for loading text */
-    margin-top: 20px;
-    /* Margin for spacing */
-}
-
-/* Optional Loading Animation (Add a spinner) */
-.loading::after {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #007bff;
-    /* Border color */
-    border-top: 3px solid transparent;
-    /* Top border transparent */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    /* Spin animation */
-    margin-left: 10px;
-    /* Space between text and spinner */
-}
-
-/* Spin animation */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
+@media (max-width: 600px) {
+    .login-container {
+        padding: 20px;
     }
 
-    100% {
-        transform: rotate(360deg);
+    h3 {
+        font-size: 20px;
+    }
+
+    input,
+    button {
+        font-size: 14px;
     }
 }

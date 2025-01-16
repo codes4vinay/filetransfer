@@ -14,13 +14,13 @@ const sendEmail = async (userEmail, fileLink) => {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "filespire@gmail.com",
+            user: "filetranfer@gmail.com",
             pass: "qjzr moma kzxt iohy",
         },
     });
 
     const mailOptions = {
-        from: "Filespire <filespire@gmail.com>",
+        from: "filetranfer <filetranfer@gmail.com>",
         to: user.email,
         subject: "Your File Upload Link",
         text: `Your file has been uploaded successfully. Access it here: ${result}`,
@@ -42,4 +42,5 @@ DBconnection();
 app.listen(PORT, () => {
     console.log("server is running on port 8000");
 });
+
 

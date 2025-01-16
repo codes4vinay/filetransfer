@@ -1,4 +1,4 @@
-// AuthComponent.js
+
 import React, { useState, useEffect } from 'react';
 import { auth } from './firebaseConfig.jsx';
 import {
@@ -15,7 +15,7 @@ const AuthComponent = () => {
     const [password, setPassword] = useState('');
     const [user, setUser] = useState(null);
 
-    // Monitor authentication state
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -62,9 +62,9 @@ const AuthComponent = () => {
         <div>
             {user ? (
                 <div id="user_container">
-                    <div style={{ display: 'flex', justifyContent: 'center', paddingRight: '20px', backgroundColor: "wheat" }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: '10px', backgroundColor: "black" }}>
                         <div id="user_container" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <h1 style={{ fontSize: '1rem', fontWeight: 'bold', margin: 0 }}>{user.email}</h1>
+                            <h1 style={{ color: 'white', fontSize: '1rem', fontWeight: 'bold', margin: 0 }}>{user.email}</h1>
                             <button onClick={handleSignOut} style={{ padding: '5px 10px', cursor: 'pointer', backgroundColor: "#646cff", color: "white" }}>Logout</button>
 
                         </div>
