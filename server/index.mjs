@@ -3,7 +3,8 @@ import router from './routes/routes.js';
 import cors from 'cors';
 import DBconnection from './database/db.js';
 import nodemailer from 'nodemailer';
-const axios = require("axios")
+import axios from "axios";
+
 
 
 const app = express();
