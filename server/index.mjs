@@ -7,7 +7,7 @@ import axios from "axios";
 
 const app = express();
 const url = `https://go.filetranfer.tech/`;
-const interval = 800000;
+const interval = 3600000;
 
 // Middleware to parse JSON
 app.use(express.json());
