@@ -3,7 +3,7 @@ import router from './routes/routes.js';
 import cors from 'cors';
 import DBconnection from './database/db.js';
 import nodemailer from 'nodemailer';
-import axios from "axios";
+import axios from 'axios';
 
 const app = express();
 const url = `https://go.filetranfer.tech/`;
@@ -12,31 +12,35 @@ const interval = 1800000;
 // Middleware to parse JSON
 app.use(express.json());
 
-// CORS Configuration
+// ✅ Updated CORS Configuration
+const allowedOrigins = [
+  'http://localhost:5173',        // Local development
+  'https://filetranfer.tech'      // Production
+];
+
 app.use(
   cors({
-    origin: 'https://filetranfer.tech', // Allow specific origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-    credentials: true, // Allow credentials like cookies
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   })
 );
 
-// Fallback headers (Optional, in case CORS needs fallback handling)
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://filetranfer.tech');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+// ❌ DO NOT use manual CORS headers – already handled by cors()
 
 // Keep Website Reloading
 function reloadWebsite() {
   axios
     .get(url)
     .then(() => {
-      console.log("Website reloaded");
+      console.log('Website reloaded');
     })
     .catch((error) => {
       console.error(`Error: ${error.message}`);
@@ -47,29 +51,29 @@ setInterval(reloadWebsite, interval);
 // Routes
 app.use('/', router);
 
-// Email Sender
+// Email Sender Function
 const sendEmail = async (userEmail, fileLink) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
-      user: "filespire@gmail.com",
-      pass: "qjzr moma kzxt iohy",
+      user: 'filespire@gmail.com',
+      pass: 'qjzr moma kzxt iohy',
     },
   });
 
   const mailOptions = {
-    from: "Filespire <filespire@gmail.com>",
-    to: userEmail, // Correct variable name
-    subject: "Your File Upload Link",
+    from: 'Filespire <filespire@gmail.com>',
+    to: userEmail,
+    subject: 'Your File Upload Link',
     text: `Your file has been uploaded successfully. Access it here: ${fileLink}`,
     html: `<p>Your file has been uploaded successfully. <a href="${fileLink}">Click here</a> to access it.</p>`,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
+    console.log('Email sent successfully');
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
   }
 };
 
@@ -80,4 +84,3 @@ DBconnection();
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
