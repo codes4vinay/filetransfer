@@ -1,5 +1,5 @@
 .footer {
-    background: linear-gradient(135deg, #2c3e50, #1a252f);
+    background: linear-gradient(135deg, #000000, #000000);
     color: #ffffff;
     padding: 40px 20px;
     text-align: center;
@@ -27,7 +27,7 @@
     font-weight: 600;
     margin-bottom: 20px;
     font-size: 1.3rem;
-    color: #3498db;
+    color: rgb(250, 19, 250);
     position: relative;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .footer-section ul li a:hover {
-    color: #ffffff;
+    color: rgb(250, 19, 250);
 }
 
 .social-links {
@@ -73,7 +73,7 @@
 }
 
 .social-links a:hover {
-    color: #3498db;
+    color: rgb(250, 19, 250);
     transform: scale(1.1);
 }
 
