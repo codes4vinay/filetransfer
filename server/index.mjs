@@ -3,7 +3,6 @@ import router from './routes/routes.js';
 import cors from 'cors';
 import DBconnection from './database/db.js';
 import nodemailer from 'nodemailer';
-<<<<<<< HEAD
 import axios from "axios";
 import multer from 'multer';
 import mongoose from 'mongoose';
@@ -16,15 +15,11 @@ import clipboardRoutes from "./routes/clipboard.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-=======
-import axios from 'axios';
->>>>>>> f75b4543fb1434138d7f7b3dc0db5b5495f9e947
 
 const app = express();
 const url = `https://go.filetranfer.tech/`;
 const interval = 1800000;
 
-<<<<<<< HEAD
 const allowedOrigins = ['http://localhost:5173', 'https://go.filetranfer.tech'];
 
 app.use(cors({
@@ -50,48 +45,10 @@ function reloadWebsite() {
         console.log("Website reloaded");
     }).catch((error) => {
         console.error(`Error: ${error.message}`);
-=======
-// Middleware to parse JSON
-app.use(express.json());
-
-// ✅ Updated CORS Configuration
-const allowedOrigins = [
-  'http://localhost:5173',        // Local development
-  'https://filetranfer.tech'      // Production
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  })
-);
-
-// ❌ DO NOT use manual CORS headers – already handled by cors()
-
-// Keep Website Reloading
-function reloadWebsite() {
-  axios
-    .get(url)
-    .then(() => {
-      console.log('Website reloaded');
-    })
-    .catch((error) => {
-      console.error(`Error: ${error.message}`);
->>>>>>> f75b4543fb1434138d7f7b3dc0db5b5495f9e947
     });
 }
 setInterval(reloadWebsite, interval);
 
-<<<<<<< HEAD
 // Multer setup
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads'),
@@ -136,28 +93,6 @@ const sendEmail = async (userEmail, fileLink) => {
         text: `Your file has been uploaded successfully. Access it here: ${fileLink}`,
         html: `<p>Your file has been uploaded successfully. <a href="${fileLink}">Click here</a> to access it.</p>`,
     };
-=======
-// Routes
-app.use('/', router);
-
-// Email Sender Function
-const sendEmail = async (userEmail, fileLink) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'filespire@gmail.com',
-      pass: 'qjzr moma kzxt iohy',
-    },
-  });
-
-  const mailOptions = {
-    from: 'Filespire <filespire@gmail.com>',
-    to: userEmail,
-    subject: 'Your File Upload Link',
-    text: `Your file has been uploaded successfully. Access it here: ${fileLink}`,
-    html: `<p>Your file has been uploaded successfully. <a href="${fileLink}">Click here</a> to access it.</p>`,
-  };
->>>>>>> f75b4543fb1434138d7f7b3dc0db5b5495f9e947
 
   try {
     await transporter.sendMail(mailOptions);
@@ -167,7 +102,6 @@ const sendEmail = async (userEmail, fileLink) => {
   }
 };
 
-<<<<<<< HEAD
 // Cron job for deleting expired files
 cron.schedule('* * * * *', async () => {
     const currentTime = new Date();
@@ -192,16 +126,9 @@ app.use("/api/clipboard", clipboardRoutes);
 app.use('/', router);
 
 // Start server
-=======
-// Database Connection and Server Start
->>>>>>> f75b4543fb1434138d7f7b3dc0db5b5495f9e947
 const PORT = 8000;
 DBconnection();
 
 app.listen(PORT, () => {
-<<<<<<< HEAD
     console.log(`Server is running on port ${PORT}`);
-=======
-  console.log(`Server is running on port ${PORT}`);
->>>>>>> f75b4543fb1434138d7f7b3dc0db5b5495f9e947
 });
