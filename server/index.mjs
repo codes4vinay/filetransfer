@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const url = `https://go.filetranfer.tech/`;
-const interval = 1800000;
+const interval = 870000;
 
 const allowedOrigins = ['http://localhost:5173', 'https://go.filetranfer.tech'];
 
@@ -60,7 +60,7 @@ app.post('/upload', upload.single("file"), async (req, res) => {
             filename: req.file.originalname,
             fileUrl,
             createdAt: new Date(),
-            expiresAt: new Date(Date.now() + 15 * 60 * 1000)
+            expiresAt: new Date(Date.now() + 50 * 60 * 1000)
         });
 
         await file.save();
