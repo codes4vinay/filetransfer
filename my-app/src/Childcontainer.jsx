@@ -17,11 +17,12 @@ const ChildContainer = () => {
           <li className="font-semibold text-white">Link Generation</li>
           <li className="font-semibold text-white">Email Sharing</li>
           <li className="font-semibold text-white">User Authentication</li>
+          <li className="font-semibold text-white">Online Clipboard</li>
         </ul>
       </section>
 
       {/* Desktop Version (grid with icons & details) */}
-      <section className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+      <section className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-8">
         <div className="flex flex-col items-center text-center p-6 bg-black/20 backdrop-blur-md rounded-2xl shadow-md hover:scale-105 transition">
           <div className="text-4xl mb-4">🔒</div>
           <h2 className="text-xl font-semibold text-white">
@@ -52,6 +53,14 @@ const ChildContainer = () => {
             User Authentication
           </h2>
           <p className="text-purple-200 mt-2">Securely log in with Firebase.</p>
+        </div>
+
+        <div className="flex flex-col items-center text-center p-6 bg-black/20 backdrop-blur-md rounded-2xl shadow-md hover:scale-105 transition">
+          <div className="text-4xl mb-4">📋</div>
+          <h2 className="text-xl font-semibold text-white">Online Clipboard</h2>
+          <p className="text-purple-200 mt-2">
+            Share and receive text instantly with a 6-digit code.
+          </p>
         </div>
       </section>
     </div>

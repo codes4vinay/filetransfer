@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AuthComponent from "./AuthComponent";
 import Container from "./Container";
-
+import NotFound from "./NotFound";
 import Features from "./Features";
 import About from "./About";
 import Contact from "./Contact";
@@ -31,6 +31,7 @@ function App() {
                 </>
               }
             />
+            <Route path="*" element={<NotFound />} />
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

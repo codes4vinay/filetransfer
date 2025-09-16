@@ -23,7 +23,7 @@ const Features = () => {
       </header>
 
       {/* Features Grid */}
-      <section className=" mt-25 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 pb-12">
+      <section className="mt-25 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 pb-12">
         {[
           { icon: "🔒", title: "Secure File Sharing", desc: "Ensure privacy." },
           {
@@ -41,16 +41,15 @@ const Features = () => {
             title: "User Authentication",
             desc: "Securely log in and manage your files with Firebase.",
           },
-
           {
             icon: "📱",
             title: "Mobile Friendly",
             desc: "Access and share files seamlessly on any device.",
           },
           {
-            icon: "📂",
-            title: "File Converter",
-            desc: "Easily convert Word files to PDF.",
+            icon: "📋",
+            title: "Online Clipboard",
+            desc: "Share and receive text instantly with a 6-digit code.",
           },
         ].map((feature, index) => (
           <div

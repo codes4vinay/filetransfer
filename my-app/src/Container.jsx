@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { uploadFile } from "./services/api.js";
 import { QRCodeCanvas } from "qrcode.react";
 import ChildContainer from "./Childcontainer";
+import { Link } from "react-router-dom"; // ✅ Import Link
 
 const Container = () => {
   const [file, setFile] = useState(null);
@@ -133,6 +134,20 @@ const Container = () => {
               Send File via Email
             </button>
           </a>
+
+          {/* New Buttons for Online Clipboard */}
+          <div className="flex gap-4 mt-8 flex-wrap">
+            <Link to="/clipboard/send">
+              <button className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition">
+                Send Clipboard
+              </button>
+            </Link>
+            <Link to="/clipboard/receive">
+              <button className="px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition">
+                Receive Clipboard
+              </button>
+            </Link>
+          </div>
         </div>
 
         {/* Right Column: QR Code */}
@@ -156,6 +171,8 @@ const Container = () => {
           </div>
         )}
       </div>
+
+      {/* Features Section */}
       <ChildContainer />
     </div>
   );
