@@ -30,6 +30,18 @@ app.use(cors({
 
 app.options("*", cors());
 
+app.get('/', (req, res) => {
+  return res.send(`
+    <p>This is filespire server!<br>
+       Made by 
+       <a href="https://vinayyadav.me" target="_blank" style="color:blue; text-decoration:underline;">
+         Vinay Kumar
+       </a>
+    </p>
+  `);
+});
+
+
 // Middleware
 app.use(express.json());
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
