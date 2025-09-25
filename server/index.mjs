@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 app.use(express.json());
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
 
-// Reload website interval
+// Reload website 
 function reloadWebsite() {
     axios.get(url).then(() => {
         console.log("Website reloaded");
