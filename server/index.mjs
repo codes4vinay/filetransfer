@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const url = `https://go.filetranfer.tech/`;
-const interval = 880000;
+const interval = 1800000;
 
 const allowedOrigins = ['http://localhost:5173', 'https://go.filetranfer.tech'];
 
