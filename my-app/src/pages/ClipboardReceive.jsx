@@ -8,12 +8,13 @@ export default function ClipboardReceive() {
   const getContent = async () => {
     try {
       setError("");
-      const res = await fetch("https://go.filetranfer.tech/api/clipboard/receive",
+      const res = await fetch(
+        "https://filespire-app.onrender.com//api/clipboard/receive",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code }),
-        }
+        },
       );
 
       if (!res.ok) {

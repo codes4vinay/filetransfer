@@ -17,10 +17,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const url = `https://go.filetranfer.tech/`;
+const url = `https://filespire-app.onrender.com//`;
 const interval = 1800000;
 
-const allowedOrigins = ['http://localhost:5173', 'https://go.filetranfer.tech'];
+const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com/'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -49,17 +49,17 @@ function reloadWebsite() {
 }
 setInterval(reloadWebsite, interval);
 
-// Multer setup
+// Multer setup -- to have full control over files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads'),
     filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
-const upload = multer({ storage });
+const upload = multer({ storage });  //middleware
 
 // File upload route
 app.post('/upload', upload.single("file"), async (req, res) => {
     try {
-        const fileUrl = `https://go.filetranfer.tech/files/${req.file.filename}`;
+        const fileUrl = `https://filespire-app.onrender.com//files/${req.file.filename}`;
 
         const file = new File({
             filename: req.file.originalname,
@@ -94,12 +94,12 @@ const sendEmail = async (userEmail, fileLink) => {
         html: `<p>Your file has been uploaded successfully. <a href="${fileLink}">Click here</a> to access it.</p>`,
     };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully');
-  } catch (error) {
-    console.error('Error sending email:', error);
-  }
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
 };
 
 // Cron job for deleting expired files

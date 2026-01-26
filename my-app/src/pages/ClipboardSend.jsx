@@ -8,12 +8,13 @@ export default function ClipboardSend() {
   const send = async () => {
     try {
       setError("");
-      const res = await fetch("https://go.filetranfer.tech/api/clipboard/send",
+      const res = await fetch(
+        "https://filespire-app.onrender.com//api/clipboard/send",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ content: text }),
-        }
+        },
       );
 
       if (!res.ok) {
