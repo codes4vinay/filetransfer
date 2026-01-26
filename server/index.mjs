@@ -17,10 +17,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const url = `https://filespire-app.onrender.com//`;
+const url = `https://filespire-app.onrender.com/`;
 const interval = 1800000;
 
-const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com/'];
+const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com'];
 
 app.use(cors({
   origin: "*",
@@ -66,7 +66,7 @@ const upload = multer({ storage });  //middleware
 // File upload route
 app.post('/upload', upload.single("file"), async (req, res) => {
     try {
-        const fileUrl = `https://filespire-app.onrender.com//files/${req.file.filename}`;
+        const fileUrl = `https://filespire-app.onrender.com/files/${req.file.filename}`;
 
         const file = new File({
             filename: req.file.originalname,
