@@ -9,7 +9,7 @@ export default function ClipboardReceive() {
     try {
       setError("");
       const res = await fetch(
-        "https://filespire-app.onrender.com//api/clipboard/receive",
+        "https://filespire-app.onrender.com/api/clipboard/receive",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
