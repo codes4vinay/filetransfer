@@ -23,23 +23,30 @@ const interval = 1800000;
 const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com/'];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+app.options("*", cors());
+
+app.get('/', (req, res) => {
+  return res.send(`
+    <p>This is filespire server!<br>
+       Made by 
+       <a href="https://vinayyadav.me" target="_blank" style="color:blue; text-decoration:underline;">
+         Vinay Kumar
+       </a>
+    </p>
+  `);
+});
+
 
 // Middleware
 app.use(express.json());
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
 
-// Reload website interval
+// Reload website 
 function reloadWebsite() {
     axios.get(url).then(() => {
         console.log("Website reloaded");
@@ -65,7 +72,7 @@ app.post('/upload', upload.single("file"), async (req, res) => {
             filename: req.file.originalname,
             fileUrl,
             createdAt: new Date(),
-            expiresAt: new Date(Date.now() + 15 * 60 * 1000)
+            expiresAt: new Date(Date.now() + 50 * 60 * 1000)
         });
 
         await file.save();
