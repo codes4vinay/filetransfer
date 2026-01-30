@@ -133,7 +133,7 @@ app.use("/api/clipboard", clipboardRoutes);
 app.use('/', router);
 
 // Start server
-const PORT = 8080;
+const PORT = process.env.PORT || 8080
 DBconnection();
 
 app.listen(PORT, () => {
