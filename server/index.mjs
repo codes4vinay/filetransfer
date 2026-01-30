@@ -17,8 +17,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const url = `https://filespire-app.onrender.com/`;
-const interval = 1800000;
 
 const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com'];
 
@@ -45,16 +43,6 @@ app.get('/', (req, res) => {
 // Middleware
 app.use(express.json());
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
-
-// Reload website 
-function reloadWebsite() {
-    axios.get(url).then(() => {
-        console.log("Website reloaded");
-    }).catch((error) => {
-        console.error(`Error: ${error.message}`);
-    });
-}
-setInterval(reloadWebsite, interval);
 
 // Multer setup -- to have full control over files
 const storage = multer.diskStorage({
