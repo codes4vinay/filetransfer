@@ -129,7 +129,7 @@ const Container = () => {
           )}
 
           {/* Send via Email */}
-          <a href="https://app.filetranfer.tech/">
+          <a href="https://nodemailer-911562915445.asia-south1.run.app">
             <button className="px-6 py-2 bg-gray-100 text-purple-600 rounded-md hover:bg-gray-200 transition">
               Send File via Email
             </button>
