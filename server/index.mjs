@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://filespire-911562915445.asia-south2.run.app'];
 
 app.use(cors({
   origin: "*",
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   return res.send(`
     <p>This is filespire server!<br>
        Made by 
-       <a href="https://vinayyadav.me" target="_blank" style="color:blue; text-decoration:underline;">
+       <a href="https://vinayislive.vercel.app" target="_blank" style="color:blue; text-decoration:underline;">
          Vinay Kumar
        </a>
     </p>
@@ -54,7 +54,7 @@ const upload = multer({ storage });  //middleware
 // File upload route
 app.post('/upload', upload.single("file"), async (req, res) => {
     try {
-        const fileUrl = `https://filespire-app.onrender.com/files/${req.file.filename}`;
+        const fileUrl = `https://filespire-911562915445.asia-south2.run.app/files/${req.file.filename}`;
 
         const file = new File({
             filename: req.file.originalname,
