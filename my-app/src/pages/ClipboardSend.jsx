@@ -8,14 +8,11 @@ export default function ClipboardSend() {
   const send = async () => {
     try {
       setError("");
-      const res = await fetch(
-        "https://filespire-911562915445.asia-south2.run.app/api/clipboard/send",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content: text }),
-        },
-      );
+      const res = await fetch("https://link.filespire.in/api/clipboard/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: text }),
+      });
 
       if (!res.ok) {
         const errText = await res.text();

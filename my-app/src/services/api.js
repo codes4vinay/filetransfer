@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URI = 'https://filespire-911562915445.asia-south2.run.app';
+const API_URI = 'https://link.filespire.in';
 
 export const uploadFile = async (data, expirationPeriod) => {
     try {

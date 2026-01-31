@@ -19,7 +19,7 @@ const Container = () => {
     const getImage = async () => {
       if (file) {
         setIsLoading(true);
-        setResult(""); // reset previous result
+        setResult(""); 
         const data = new FormData();
         data.append("file", file);
 
@@ -129,7 +129,7 @@ const Container = () => {
           )}
 
           {/* Send via Email */}
-          <a href="https://nodemailer-911562915445.asia-south1.run.app">
+          <a href="https://mail.filespire.in">
             <button className="px-6 py-2 bg-gray-100 text-purple-600 rounded-md hover:bg-gray-200 transition">
               Send File via Email
             </button>

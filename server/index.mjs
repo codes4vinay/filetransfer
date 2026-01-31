@@ -1,141 +1,133 @@
 import express from 'express';
-import router from './routes/routes.js';
 import cors from 'cors';
-import DBconnection from './database/db.js';
-import nodemailer from 'nodemailer';
-import axios from "axios";
 import multer from 'multer';
 import mongoose from 'mongoose';
-import File from './models/file.js';
 import path from 'path';
 import fs from 'fs';
 import cron from 'node-cron';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
-import clipboardRoutes from "./routes/clipboard.js";
+
+import router from './routes/routes.js';
+import clipboardRoutes from './routes/clipboard.js';
+import DBconnection from './database/db.js';
+import File from './models/file.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const url = `https://filespire-app.onrender.com/`;
-const interval = 1800000;
 
-const allowedOrigins = ['http://localhost:5173', 'https://filespire-app.onrender.com'];
+/* ─────────────────────────────
+   MIDDLEWARE
+───────────────────────────── */
+app.use(express.json());
 
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.options("*", cors());
 
+/* ─────────────────────────────
+   HOME
+───────────────────────────── */
 app.get('/', (req, res) => {
-  return res.send(`
-    <p>This is filespire server!<br>
-       Made by 
-       <a href="https://vinayyadav.me" target="_blank" style="color:blue; text-decoration:underline;">
-         Vinay Kumar
-       </a>
-    </p>
-  `);
+    res.send(`
+        <p>
+            This is Filespire Server<br>
+            Made by <a href="https://vinaydev.in" target="_blank">Vinay Kumar</a>
+        </p>
+    `);
 });
 
-
-// Middleware
-app.use(express.json());
+/* ─────────────────────────────
+   STATIC FILES
+───────────────────────────── */
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
 
-// Reload website 
-function reloadWebsite() {
-    axios.get(url).then(() => {
-        console.log("Website reloaded");
-    }).catch((error) => {
-        console.error(`Error: ${error.message}`);
-    });
-}
-setInterval(reloadWebsite, interval);
-
-// Multer setup -- to have full control over files
+/* ─────────────────────────────
+   MULTER SETUP (SHORT FILENAME)
+───────────────────────────── */
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads'),
-    filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+        const shortName = crypto.randomBytes(4).toString('hex');
+        cb(null, `${Date.now()}-${shortName}${ext}`);
+    }
 });
-const upload = multer({ storage });  //middleware
 
-// File upload route
-app.post('/upload', upload.single("file"), async (req, res) => {
+const upload = multer({ storage });
+
+/* ─────────────────────────────
+   FILE UPLOAD
+───────────────────────────── */
+app.post('/upload', upload.single('file'), async (req, res) => {
     try {
-        const fileUrl = `https://filespire-app.onrender.com/files/${req.file.filename}`;
+        const fileUrl = `https://link.filespire.in/files/${req.file.filename}`;
 
-        const file = new File({
-            filename: req.file.originalname,
+        const newFile = new File({
+            filename: req.file.filename,
             fileUrl,
-            createdAt: new Date(),
-            expiresAt: new Date(Date.now() + 50 * 60 * 1000)
+            createdAt: new Date()
         });
 
-        await file.save();
-        res.status(200).json({ path: fileUrl });
+        await newFile.save();
+
+        res.status(200).json({
+            path: fileUrl
+        });
     } catch (error) {
-        console.error("Upload error:", error);
-        res.status(500).json({ error: "Something went wrong during upload." });
+        console.error('Upload error:', error);
+        res.status(500).json({ error: 'Upload failed' });
     }
 });
 
-// Email sender function
-const sendEmail = async (userEmail, fileLink) => {
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "Filespire@gmail.com",
-            pass: "qjzr moma kzxt iohy",
-        },
-    });
-
-    const mailOptions = {
-        from: "Filespire <Filespire@gmail.com>",
-        to: userEmail,
-        subject: "Your File Upload Link",
-        text: `Your file has been uploaded successfully. Access it here: ${fileLink}`,
-        html: `<p>Your file has been uploaded successfully. <a href="${fileLink}">Click here</a> to access it.</p>`,
-    };
-
+/* ─────────────────────────────
+   AUTO DELETE AFTER 30 DAYS
+   (RUNS DAILY AT MIDNIGHT)
+───────────────────────────── */
+cron.schedule('0 0 * * *', async () => {
     try {
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-    } catch (error) {
-        console.error('Error sending email:', error);
-    }
-};
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+        const cutoffDate = new Date(Date.now() - THIRTY_DAYS);
 
-// Cron job for deleting expired files
-cron.schedule('* * * * *', async () => {
-    const currentTime = new Date();
-    try {
-        const expiredFiles = await File.find({ expiresAt: { $lte: currentTime } });
+        const oldFiles = await File.find({
+            createdAt: { $lte: cutoffDate }
+        });
 
-        for (const file of expiredFiles) {
+        for (const file of oldFiles) {
             const filePath = path.join(__dirname, 'uploads', file.filename);
-            fs.unlinkSync(filePath); // Delete from disk
-            await file.delete();     // Delete from DB
-            console.log(`Expired file deleted: ${file.filename}`);
+
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath);
+            }
+
+            await file.deleteOne();
+            console.log(`Deleted (30 days): ${file.filename}`);
         }
-    } catch (error) {
-        console.error("Error deleting expired files:", error);
+    } catch (err) {
+        console.error('Cleanup error:', err);
     }
 });
 
-
-app.use("/api/clipboard", clipboardRoutes);
-
-// Existing router
+/* ─────────────────────────────
+   ROUTES
+───────────────────────────── */
+app.use('/api/clipboard', clipboardRoutes);
 app.use('/', router);
 
-// Start server
-const PORT = 8000;
+/* ─────────────────────────────
+   SERVER START
+───────────────────────────── */
+const PORT =  process.env.PORT || 8080;
 DBconnection();
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
